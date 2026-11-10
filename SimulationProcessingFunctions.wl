@@ -47,7 +47,8 @@ plots,femplotsAll,rfpplotsAll,gfpplotsAll},
 	
 Do[
 {parSamp[[2]],mu}=RandomSample[post[[All,{1,2}]],1][[1]];
-Export["./Par"<>ToString[index]<>".csv",parSamp,"CSV","TextDelimiters"->""];cpp=Partition[Import["!../cpp/testB<Par"<>ToString[index]<>".csv","Table"],pars[[9]]+1];
+Export["./Par"<>ToString[index]<>".csv",parSamp,"CSV","TextDelimiters"->""];
+cpp=Partition[Import["!./CageSimulation<Par"<>ToString[index]<>".csv","Table"],pars[[9]]+1];
 {pp,fem,rfp,gfp}=phenotype[cpp,200,mu];
 AppendTo[femAll,fem];AppendTo[rfpAll,rfp];AppendTo[gfpAll,gfp],{ii,NumDraws}];
 	plots=Table[Show[Table[ListLinePlot[{femAll[[samp,cage]],rfpAll[[samp,cage]],gfpAll[[samp,cage]]}[[phen]],
